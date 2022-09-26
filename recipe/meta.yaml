@@ -1,6 +1,6 @@
 {% set name = "powerloader" %}
-{% set version = "0.1.0" %}
-{% set sha256 = "8a92e80d3c100514d346ce9fd207643769794d23290c17fedf754dbbd890ee05" %}
+{% set version = "0.2.0" %}
+{% set sha256 = "83541234b1d6832180b11ddfccc972de3600965738da022929a5dda038316b75" %}
 
 package:
   name: {{ name|lower }}
@@ -9,42 +9,72 @@ package:
 source:
   url: https://github.com/mamba-org/powerloader/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - powerloader_cmake.patch
 
 build:
-  number: 2
+  number: 0
   skip: true  # [(win and vc<14) or py==36]
-  run_exports:
-    - {{ pin_subpackage(name, max_pin='x.x') }}
 
-requirements:
-  build:
-    - {{ compiler('cxx') }}
-    - cmake
-    - ninja
-  host:
-    - libcurl
-    - openssl
-    - nlohmann_json
-    - cli11
-    - zchunk
-    - spdlog
-    - cpp-expected
-    - yaml-cpp
+outputs:
+  - name: powerloader
+    script: build_pl.sh             # [unix]
+    script: build_pl.bat            # [win]
+    requirements:
+      build:
+        - {{ compiler('cxx') }}
+        - cmake
+        - ninja
+      host:
+        - libcurl
+        - openssl
+        - nlohmann_json
+        - cli11
+        - zchunk
+        - spdlog
+        - cpp-expected
+        - yaml-cpp
+    build:
+      run_exports:
+        - {{ pin_subpackage(name, max_pin='x.x') }}
+    test:
+      commands:
+        - test -d ${PREFIX}/include/powerloader                                                        # [unix]
+        - test -f ${PREFIX}/include/powerloader/powerloader.hpp                                        # [unix]
+        - test -f ${PREFIX}/lib/cmake/powerloader/powerloaderConfig.cmake                              # [unix]
+        - test -f ${PREFIX}/lib/cmake/powerloader/powerloaderConfigVersion.cmake                       # [unix]
+        - test -f ${PREFIX}/lib/libpowerloader${SHLIB_EXT}                                             # [unix]
+        - test -e ${PREFIX}/bin/powerloader                                                            # [unix]
+        - if not exist %LIBRARY_PREFIX%\include\powerloader\powerloader.hpp (exit 1)                   # [win]
+        - if not exist %LIBRARY_PREFIX%\lib\cmake\powerloader\powerloaderConfig.cmake (exit 1)         # [win]
+        - if not exist %LIBRARY_PREFIX%\lib\cmake\powerloader\powerloaderConfigVersion.cmake (exit 1)  # [win]
+        - if not exist %LIBRARY_PREFIX%\lib\libpowerloader.lib (exit 1)                                # [win]
+        - if not exist %LIBRARY_PREFIX%\bin\libpowerloader.dll (exit 1)                                # [win]
+        - if not exist %LIBRARY_PREFIX%\bin\powerloader.exe (exit 1)                                   # [win]
 
-test:
-  commands:
-    - test -d ${PREFIX}/include/powerloader                                                        # [unix]
-    - test -f ${PREFIX}/include/powerloader/powerloader.hpp                                        # [unix]
-    - test -f ${PREFIX}/lib/cmake/powerloader/powerloaderConfig.cmake                              # [unix]
-    - test -f ${PREFIX}/lib/cmake/powerloader/powerloaderConfigVersion.cmake                       # [unix]
-    - test -f ${PREFIX}/lib/libpowerloader${SHLIB_EXT}                                             # [unix]
-    - test -e ${PREFIX}/bin/powerloader                                                            # [unix]
-    - if not exist %LIBRARY_PREFIX%\include\powerloader\powerloader.hpp (exit 1)                   # [win]
-    - if not exist %LIBRARY_PREFIX%\lib\cmake\powerloader\powerloaderConfig.cmake (exit 1)         # [win]
-    - if not exist %LIBRARY_PREFIX%\lib\cmake\powerloader\powerloaderConfigVersion.cmake (exit 1)  # [win]
-    - if not exist %LIBRARY_PREFIX%\lib\libpowerloader.lib (exit 1)                                # [win]
-    - if not exist %LIBRARY_PREFIX%\bin\libpowerloader.dll (exit 1)                                # [win]
-    - if not exist %LIBRARY_PREFIX%\bin\powerloader.exe (exit 1)                                   # [win]
+  - name: powerloader-static
+    script: build_pl.sh             # [unix]
+    script: build_pl.bat            # [win]
+    requirements:
+      build:
+        - {{ compiler('cxx') }}
+        - cmake
+        - ninja
+      host:
+        - {{ pin_subpackage('powerloader', exact=True) }}
+        - libcurl
+        - openssl
+        - nlohmann_json
+        - cli11
+        - zchunk
+        - spdlog
+        - cpp-expected
+        - yaml-cpp
+    test:
+      commands:
+        - test -f $PREFIX/lib/libpowerloader.a  # [not win]
+        - if not exist %LIBRARY_LIB%\libpowerloader_static.lib exit 1  # [win]
+
 
 about:
   home: https://github.com/mamba-org/powerloader

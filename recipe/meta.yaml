@@ -1,6 +1,6 @@
 {% set name = "powerloader" %}
-{% set version = "0.2.0" %}
-{% set sha256 = "83541234b1d6832180b11ddfccc972de3600965738da022929a5dda038316b75" %}
+{% set version = "0.3.0" %}
+{% set sha256 = "3d771a857ce39f7090b1d87eca5660bcf784fdc7b7efa601a34550bfe2a97e0c" %}
 
 package:
   name: {{ name|lower }}
@@ -9,8 +9,6 @@ package:
 source:
   url: https://github.com/mamba-org/powerloader/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  patches:
-    - powerloader_cmake.patch
 
 build:
   number: 0

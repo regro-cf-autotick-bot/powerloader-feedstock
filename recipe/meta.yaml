@@ -9,8 +9,6 @@ package:
 source:
   url: https://github.com/mamba-org/powerloader/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  patches:
-    - powerloader_cmake.patch
 
 build:
   number: 0

@@ -1,6 +1,6 @@
 {% set name = "powerloader" %}
-{% set version = "0.4.0" %}
-{% set sha256 = "49c85b3dcfec2f3f0d51d1890306ff771da0f73dd8cdcc8b774079da78392337" %}
+{% set version = "0.4.1" %}
+{% set sha256 = "659556687536261a667c6cc96096410d4fbb6fe4977adfa4d107b4859838396e" %}
 
 package:
   name: {{ name|lower }}

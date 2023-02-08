@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: true  # [(win and vc<14) or py==36]
 
 outputs:
@@ -59,7 +59,6 @@ outputs:
         - cmake
         - ninja
       host:
-        - {{ pin_subpackage('powerloader', exact=True) }}
         - libcurl
         - openssl
         - nlohmann_json
@@ -68,6 +67,8 @@ outputs:
         - spdlog
         - cpp-expected
         - yaml-cpp
+      run:
+        - {{ pin_subpackage('powerloader', exact=True) }}
     test:
       commands:
         - test -f $PREFIX/lib/libpowerloader.a  # [not win]

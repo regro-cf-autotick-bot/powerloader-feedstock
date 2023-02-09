@@ -1,6 +1,6 @@
 {% set name = "powerloader" %}
-{% set version = "0.5.1" %}
-{% set sha256 = "68a5de7513ed1b43b59716ae63a4b02e3934c97e3c246026b90f95970cfc3852" %}
+{% set version = "0.5.2" %}
+{% set sha256 = "14607bb605a0e5ee7053dac6deaf2619a4e0bb2b835fcf788ffeb69ec366dccb" %}
 
 package:
   name: {{ name|lower }}
@@ -11,13 +11,13 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 3
+  number: 0
   skip: true  # [(win and vc<14) or py==36]
 
 outputs:
   - name: powerloader
-    script: build_pl.sh             # [unix]
-    script: build_pl.bat            # [win]
+    script: build_pl.sh  # [unix]
+    script: build_pl.bat  # [win]
     requirements:
       build:
         - {{ compiler('cxx') }}
@@ -52,8 +52,8 @@ outputs:
         - if not exist %LIBRARY_PREFIX%\bin\powerloader.exe (exit 1)                                   # [win]
 
   - name: powerloader-static
-    script: build_pl.sh             # [unix]
-    script: build_pl.bat            # [win]
+    script: build_pl.sh  # [unix]
+    script: build_pl.bat  # [win]
     requirements:
       build:
         - {{ compiler('cxx') }}

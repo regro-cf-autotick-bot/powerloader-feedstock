@@ -9,9 +9,11 @@ package:
 source:
   url: https://github.com/mamba-org/powerloader/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - patches/01-fmt.patch
 
 build:
-  number: 1
+  number: 2
   skip: true  # [(win and vc<14) or py==36]
 
 requirements:

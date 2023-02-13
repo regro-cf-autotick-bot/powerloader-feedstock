@@ -8,6 +8,7 @@ cmake .. ${CMAKE_ARGS}              \
     -GNinja                         \
     -DCMAKE_INSTALL_PREFIX=$PREFIX  \
     -DCMAKE_PREFIX_PATH=$PREFIX     \
+    -DCMAKE_BUILD_TYPE="Release"    \
     -DBUILD_EXE=ON                  \
     -DBUILD_SHARED=ON               \
     -DBUILD_STATIC=ON               \

@@ -1,6 +1,6 @@
 {% set name = "powerloader" %}
-{% set version = "0.5.2" %}
-{% set sha256 = "14607bb605a0e5ee7053dac6deaf2619a4e0bb2b835fcf788ffeb69ec366dccb" %}
+{% set version = "0.5.3" %}
+{% set sha256 = "610d698452f3952e25c2e8622ce46e49bbf1536826196f7611f417d3e6e3ad0b" %}
 
 package:
   name: {{ name|lower }}
@@ -9,8 +9,6 @@ package:
 source:
   url: https://github.com/mamba-org/powerloader/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  patches:
-    - patch/01-win-export.patch
 
 build:
   number: 0

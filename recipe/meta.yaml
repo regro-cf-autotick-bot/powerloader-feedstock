@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: true  # [(win and vc<14) or py==36]
 
 requirements:
@@ -41,8 +41,9 @@ requirements:
 outputs:
   - name: powerloader
     files:
-      - bin/powerloader         # [unix]
-      - lib/libpowerloader.so   # [unix]
+      - bin/powerloader           # [unix]
+      - lib/libpowerloader.so     # [linux]
+      - lib/libpowerloader.dylib  # [osx]
       - Library\bin\powerloader.exe     # [win]
       - Library\bin\libpowerloader.dll  # [win]
       - Library\lib\libpowerloader.lib  # [win]

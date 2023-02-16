@@ -1,6 +1,6 @@
 {% set name = "powerloader" %}
-{% set version = "0.5.3" %}
-{% set sha256 = "610d698452f3952e25c2e8622ce46e49bbf1536826196f7611f417d3e6e3ad0b" %}
+{% set version = "0.5.4" %}
+{% set sha256 = "a65d65849ba67c36cc8f3312b9e4bc95ab36ee7d65febeb2fc0b94e3db228d82" %}
 
 package:
   name: {{ name|lower }}
@@ -9,11 +9,9 @@ package:
 source:
   url: https://github.com/mamba-org/powerloader/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  patches:
-    - patches/01-fmt.patch
 
 build:
-  number: 3
+  number: 0
   skip: true  # [(win and vc<14) or py==36]
 
 requirements:

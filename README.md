@@ -86,7 +86,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-powerloader-green.svg)](https://anaconda.org/conda-forge/powerloader) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/powerloader.svg)](https://anaconda.org/conda-forge/powerloader) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/powerloader.svg)](https://anaconda.org/conda-forge/powerloader) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/powerloader.svg)](https://anaconda.org/conda-forge/powerloader) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-powerloader--static-green.svg)](https://anaconda.org/conda-forge/powerloader-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/powerloader-static.svg)](https://anaconda.org/conda-forge/powerloader-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/powerloader-static.svg)](https://anaconda.org/conda-forge/powerloader-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/powerloader-static.svg)](https://anaconda.org/conda-forge/powerloader-static) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-powerloader--dev-green.svg)](https://anaconda.org/conda-forge/powerloader-dev) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/powerloader-dev.svg)](https://anaconda.org/conda-forge/powerloader-dev) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/powerloader-dev.svg)](https://anaconda.org/conda-forge/powerloader-dev) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/powerloader-dev.svg)](https://anaconda.org/conda-forge/powerloader-dev) |
 
 Installing powerloader
 ======================
@@ -98,16 +98,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `powerloader, powerloader-static` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `powerloader, powerloader-dev` can be installed with `conda`:
 
 ```
-conda install powerloader powerloader-static
+conda install powerloader powerloader-dev
 ```
 
 or with `mamba`:
 
 ```
-mamba install powerloader powerloader-static
+mamba install powerloader powerloader-dev
 ```
 
 It is possible to list all of the versions of `powerloader` available on your platform with `conda`:

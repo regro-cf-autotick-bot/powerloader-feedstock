@@ -35,6 +35,7 @@ requirements:
     - cpp-expected
     - cli11
     - yaml-cpp
+    - zlib  # [linux]
 
 outputs:
   - name: powerloader
@@ -80,6 +81,7 @@ outputs:
         - zstd-static        # [not win]
         - libssh2-static     # [not win]
         - krb5-static        # [not win]
+        - zlib               # [linux]
         - nlohmann_json
         - zchunk-static
         - spdlog

@@ -1,6 +1,6 @@
 {% set name = "powerloader" %}
-{% set version = "0.5.5" %}
-{% set sha256 = "521fa17a35dc90035f86ae13e67d10a31a18b1a26b199207aaf599bc665bbe29" %}
+{% set version = "0.6.0" %}
+{% set sha256 = "79c128bdf3f7d2bde191e1513ec9900027d5133a3bd86cf733061233d258ed53 " %}
 
 package:
   name: {{ name|lower }}
@@ -20,10 +20,8 @@ requirements:
     - cmake
     - ninja
   host:
-    - libcurl >=7.87  # [win or linux]
-    - libcurl 7.86    # [osx]
-    - libcurl-static >=7.87  # [win or linux]
-    - libcurl-static 7.86     # [osx]
+    - libcurl >=7.88.1
+    - libcurl-static >=7.88.1
     - openssl
     - libopenssl-static  # [not win]
     - libnghttp2-static  # [not win]
@@ -37,6 +35,7 @@ requirements:
     - cpp-expected
     - cli11
     - yaml-cpp
+    - zlib  # [linux]
 
 outputs:
   - name: powerloader
@@ -52,8 +51,7 @@ outputs:
         - {{ pin_subpackage(name, max_pin='x.x') }}
     requirements:
       run:
-        - libcurl >=7.87  # [win or linux]
-        - libcurl 7.86    # [osx]
+        - libcurl >=7.88.1
         - openssl
         - zchunk
         - cli11
@@ -77,13 +75,13 @@ outputs:
      #- Llibrary\lib\libpowerloader_static.lib  # [win]
     requirements:
       run:
-        - libcurl-static >=7.87  # [win or linux]
-        - libcurl-static 7.86     # [osx]
+        - libcurl-static >=7.88.1
         - libopenssl-static  # [not win]
         - libnghttp2-static  # [not win]
         - zstd-static        # [not win]
         - libssh2-static     # [not win]
         - krb5-static        # [not win]
+        - zlib               # [linux]
         - nlohmann_json
         - zchunk-static
         - spdlog
